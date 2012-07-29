@@ -12,9 +12,9 @@ class MetaParentReference extends MetaProperty
    */
   protected $refUUID;
   
-  public function __construct($refUUID)
+  public function __construct($typeUUID, $refUUID)
   {
-    parent::__construct();
+    parent::__construct($typeUUID);
     
     $this->refUUID = $refUUID;
   }

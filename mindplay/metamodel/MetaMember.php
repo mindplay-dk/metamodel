@@ -23,12 +23,12 @@ abstract class MetaMember extends MetaData implements IMetaDataCollection
     return $this->name;
   }
   
-  public function setName(MetaModelOperation $operation, $name)
+  public function setName(Operation $operation, $name)
   {
     $this->name = $name;
   }
   
-  public function addAnnotation(MetaModelOperation $operation, MetaAnnotation $annotation)
+  public function addAnnotation(Operation $operation, MetaAnnotation $annotation)
   {
     $this->annotations[] = $annotation;
   }

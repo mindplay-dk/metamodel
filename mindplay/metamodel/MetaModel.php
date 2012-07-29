@@ -26,8 +26,11 @@ class MetaModel
     $this->data[ $model->getId() ] = $model;
     
     if ($model instanceof IMetaDataCollection) {
+      /**
+       * @var $model IMetaDataCollection
+       */
       foreach ($model->getChildObjects() as $child) {
-        $this->loadModel($child);
+        $this->loadData($child);
       }
     }
   }
@@ -43,7 +46,7 @@ class MetaModel
   /**
    * Apply a change to the meta-model.
    */
-  protected function applyChange(MetaModelChange $change)
+  protected function applyChange(Change $change)
   {
     return $change->upgrade($this);
   }
@@ -51,7 +54,7 @@ class MetaModel
   /**
    * Roll back a change made to the meta-model.
    */
-  protected function revertChange(MetaModelChange $change)
+  protected function revertChange(Change $change)
   {
     return $change->downgrade($this);
   }
@@ -59,9 +62,9 @@ class MetaModel
   /**
    * Record a new MetaModelChange and apply the upgrade-operation.
    */
-  protected function makeChange(MetaModelOperation $up, MetaModelOperation $down)
+  protected function makeChange(Operation $up, Operation $down)
   {
-    $change = new MetaModelChange($up, $down);
+    $change = new Change($up, $down);
     
     if ($this->applyChange($change) !== false) {
       $this->changes[] = $change;
@@ -74,8 +77,8 @@ class MetaModel
   public function setMemberName(MetaMember $member, $newName)
   {
     $this->makeChange(
-      new SetMemberName($member->getId(), $newName),
-      new SetMemberName($member->getId(), $member->getName())
+      new operations\SetMemberName($member->getId(), $newName),
+      new operations\SetMemberName($member->getId(), $member->getName())
     );
   }
 }

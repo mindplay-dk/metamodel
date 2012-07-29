@@ -9,12 +9,12 @@ namespace mindplay\metamodel;
 class Change
 {
   /**
-   * @var MetaModelOperation operation applied on upgrade
+   * @var Operation operation applied on upgrade
    */
   protected $up;
   
   /**
-   * @var MetaModelOperation operation applied on downgrade
+   * @var Operation operation applied on downgrade
    */
   protected $down;
   

@@ -25,7 +25,7 @@ class MetaNamespace extends MetaData implements IMetaDataCollection
     $this->namespace = $namespace;
   }
   
-  public function addType(MetaModelOperation $operation, MetaType $type)
+  public function addType(Operation $operation, MetaType $type)
   {
     $this->types[$type->id] = $type;
   }

@@ -8,11 +8,11 @@ namespace mindplay\metamodel;
 class MetaClass extends MetaType
 {
   /**
-   * @var list of MetaProperty objects
+   * @var array list of MetaProperty objects
    */
   protected $properties = array();
   
-  public function addProperty(MetaModelOperation $operation, MetaProperty $property)
+  public function addProperty(Operation $operation, MetaProperty $property)
   {
     $this->properties[] = $property;
   }
